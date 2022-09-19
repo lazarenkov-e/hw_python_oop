@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List
+from typing import List, ClassVar
 
 
 @dataclass
@@ -26,9 +26,12 @@ class InfoMessage:
 class Training:
     """Базовый класс тренировки."""
 
-    LEN_STEP = 0.65  # длина шага в метрах.
-    M_IN_KM = 1000  # коэффициент для перевода значений из километров в метры.
-    MIN_IN_H = 60  # коэффициент перевода значений из часов в минуты.
+    # длина шага в метрах.
+    LEN_STEP: ClassVar[float] = 0.65
+    # коэффициент для перевода значений из километров в метры.
+    M_IN_KM: ClassVar[float] = 1000
+    # коэффициент перевода значений из часов в минуты.
+    MIN_IN_H: ClassVar[float] = 60
 
     action: int
     duration: float
@@ -62,8 +65,10 @@ class Training:
 class Running(Training):
     """Тренировка: бег."""
 
-    CAL_MULT_AV_SPEED = 18  # расход калорий при средней скорости.
-    SHIFT_AV_SPEED = 20  # сдвиг средней скорости.
+    # расход калорий при средней скорости.
+    CAL_MULT_AV_SPEED: ClassVar[float] = 18
+    # сдвиг средней скорости.
+    SHIFT_AV_SPEED: ClassVar[float] = 20
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
@@ -81,8 +86,10 @@ class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
 
     height: float
-    MULT_WEIGHT = 0.035  # множитель веса.
-    MULT_CAL = 0.029  # множитель калорий.
+    # множитель веса.
+    MULT_WEIGHT: ClassVar[float] = 0.035
+    # множитель калорий.
+    MULT_CAL: ClassVar[float] = 0.029
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
@@ -100,9 +107,9 @@ class SportsWalking(Training):
 class Swimming(Training):
     """Тренировка: плавание."""
 
-    LEN_STEP = 1.38  # длина гребка в метрах
-    SPEED_SHIFT = 1.1  # сдвиг скорости.
-    MULT_CAL = 2  # множитель калорий.
+    LEN_STEP: ClassVar[float] = 1.38  # длина гребка в метрах
+    SPEED_SHIFT: ClassVar[float] = 1.1  # сдвиг скорости.
+    MULT_CAL: ClassVar[float] = 2  # множитель калорий.
 
     length_pool: float
     count_pool: int
